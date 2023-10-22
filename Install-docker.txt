@@ -1,0 +1,159 @@
+#yum install yum-utils -y [If you were install linux minimal vesion]
+#yum install net-tools.x86_64 [Install netstat tools]
+Install Docker in Linux:
+===================
+#yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo  [Add docker repository]
+#yum install docker-ce -y
+#systemctl start docker[Run docker]
+#systemctl status docker [Check detail of installed docker]
+#systemctl enable docker [To run docker deamon on the startup]
+
+Install Docker Compose:
+=======================
+#sudo curl -L "https://github.com/docker/compose/releases/download/1.26.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+#sudo chmod +x /usr/local/bin/docker-compose
+
+Download nginx Docker Image;
+==============================
+#docker pull nginx [Pull docker image]
+#docker images [Check docker images]
+#docker ps [Check docker process]
+Run docker container:
+=====================
+#docker run -dt -p 80:80 nginx [Run docker container with randon generate naming convetion]
+#docker run --name=ngnix -dt -p 800:80 ngnix [Run docker container with spcify fixed naming convention]
+#docker ps -a [Check all docker process]
+Stop Docker Container:
+=======================
+#docker stop magical_shamir  [Stop docker container using container name]
+#docker start magical_shamir [Docker container by container name]
+Check Docker Container:
+=======================
+#curl 192.168.3.208:80 [Check container runing or not]
+#docker ps -a
+#netstat -ntlp [Check all listening port]
+#curl -I 192.168.3.208:80 [Check 80 port working or not]
+
+Identifying Docker Contailner:
+==============================
+We can identify docker container by 3 method
+
+1. Long id
+	Ex: d4d15751c9421d803238ede2590d30a76b7c7389fa36556c4cd1cac8b6371e57
+2. Short id
+	Ex: a88a95acfda6 
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS                 NAMES
+a88a95acfda6        231d40e811cd        "nginx -g 'daemon of…"   11 minutes ago      Up 11 minutes               0.0.0.0:800->80/tcp   myngnix
+
+3. Specified docker name
+	Ex: myngnix
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS                 NAMES
+a88a95acfda6        231d40e811cd        "nginx -g 'daemon of…"   11 minutes ago      Up 11 minutes               0.0.0.0:800->80/tcp   myngnix
+
+Port Binding container Run:
+===========================
+#docker run -d -p 8000:80 --name=myngnixport ngnix
+	Here,
+	Port:8000 is container host port and 
+	Port:80 is container listening port
+	name= myngnixport is  container custom name
+	ngnix= is nignix image name or we can use image id.
+If any one request in the container host via 8000 port, it will forward to doc ker container 80 port
+
+#docker inspect mynignx [check container details]
+
+Run docker Attached and Detached mode:
+======================================
+#docker run --name=attached -p 8181:80 f949e7d76d63
+
+This command docker container will be run forground mode. We will see log in the terminal
+but problem is we will not able to use terminal  using this sessioN and another problem is
+if we press Ctrl+c container process will terminited.
+
+# doccker run -d --name=detached -p 8282:80 f949e7d76d63
+
+Here use d for detached docker container. It will send container process ins the background.
+
+Docker Container Remove:
+========================
+#docker ps
+#docker container stop attached [Stop a single container]
+#docker container ls -aq [Find out all container id]
+#docker container stop $(docker container ls -aq) [Stop all container]
+#docker container rm attached [Remove a single container]
+#docker container rm $(docker container ls -aq)  [Remove all container]
+
+Docker Container Exec:
+======================
+If we want to use docker exec command must be runing primary process such as 
+	we are using  docker container exec -it docker-exec bash 
+		Here bash is primary process and apt-update is  other process
+
+#docker container exec -it [docker-exec] bash [This command is used to access the running container]
+#apt update
+#apt install net-tools
+#netstat -tulp
+#exit [Exit from docker container]
+#docker container exec -it docker-exec netstat -tulp [Run netstat -tulp command from container host]
+Here 
+	docker-exec is container name
+IT Flag docker container:
+=========================
+
+#docker container exec -it docker-exec bash
+
+	Here it is use for
+		i= Accept input from terminal [i for interactive]
+		t= It will give us tty [t flag for tty]
+
+Remove Docker Container:
+=======================
+#docker image rm -f baf995567ed6
+	Here: rm = remove 
+		f=forcely
+     baf995567ed6= Image Id
+
+cat Dockerfile
+FROM centos:centos7
+RUN yum update -y
+RUN yum install httpd -y
+COPY . /var/www/html/
+EXPOSE 80
+CMD ["apachectl", "-D", "FOREGROUND"]
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+ 

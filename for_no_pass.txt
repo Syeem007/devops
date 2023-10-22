@@ -1,0 +1,40 @@
+
+cd /etc
+
+
+
+vi /sudoers.d/ansible
+
+echo "ansible ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ansible
+
+
+
+generate ssh key
+
+ssh-keygen -t rsa -b 2048
+
+
+copy ssh-copy-id ansible@node2
+
+
+
+in cfg file
+
+
+host_key_checking
+
+
+become----------
+
+all true
+
+
+
+- name: install list of packages
+  yum:
+     name: {{ packages }}
+  vars:
+   packages:
+   - httpd
+   - httpd
+  exclude: kernel*,foo*

@@ -1,0 +1,152 @@
+mysql -u root p
+
+
+create database bhw;
+
+
+
+use bhw;
+
+
+for loading database 
+
+
+source  [name of location]
+
+
+show tables
+
+// DB credentials.
+define('DB_HOST','192.168.0.69');
+define('DB_USER','bhw');
+define('DB_PASS','Ltest@12345');
+define('DB_NAME','bhw');
+// Establish database connection.
+try
+
+
+
+Ltest@12345
+
+
+admin
+assets
+contact-us.php
+
+includes
+index.php
+logout.php
+page.php
+profile.php
+REadme
+
+Screenshots
+Search-carres
+search
+SQL
+Updatepass
+
+
+colorswitcher.php config.php footer.php  forgotpassword.php header.php login.php registration.php sidebar.php
+
+
+
+
+virtual hosting
+====================================
+
+cd /etc/httpd/conf.d
+new file
+phpapp.sysadmin.com.conf
+
+
+
+
+<VirtualHost *:80>
+    ServerName phpapp.sysadmin.com
+ DocumentRoot "/var/www.html/phpapp"
+ TransferLog /var/log/httpd/phpapp.sysadmin.com_access.log
+
+ErrorLog /var/Log/httpd/phpapp.sysadmin.com_error.log
+
+</VirtualHost >
+
+
+<Directory "/var/www/html/phpapp">
+AllowOverride All
+Options Includes ExecCGI FollowSymLinks MultiViews
+Require all granted
+
+<Directory >
+
+
+apachectl -t
+
+
+systemctl restart httpd
+
+
+Edit host file for bypass dns
+==================================
+
+vi /etc/hosts
+
+
+
+192.168.0.72 phpapp.sysadmin.com
+
+
+
+
+for default
+
+===================
+
+
+cd /etc/httpd/conf.d
+new file
+default.conf
+
+
+
+
+<VirtualHost *:80>
+    ServerName 192.168.0.72
+ DocumentRoot "/var/www/html"
+ 
+</VirtualHost >
+
+
+firewall config 
+=====================
+
+
+firewall-cmd --permanent --add-port=3306/tcp
+
+firewall-cmd --reload
+
+firewall-cmd --list-all
+
+
+mysql config
+
+===============
+
+
+vi /etc/my.cnf
+
+bind-address='*'
+
+
+grant all privileges on *.* TO 'root@'%' identified by 'Time@12345' with grant option;
+
+flush privileges;
+
+
+
+
+
+
+
+
+

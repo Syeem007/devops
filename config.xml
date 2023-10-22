@@ -1,0 +1,21 @@
+<SystemConfiguration>
+<Component FQDD="BIOS.Setup.1-1">
+ <Attribute Name="SerialComm">OnConRedir</Attribute>
+ <Attribute Name="SerialPortAddress">Com2</Attribute>
+</Component>
+<Component FQDD="iDRAC.Embedded.1">
+ <Attribute Name="IPv6.1#Enable">Enabled</Attribute>
+ <Attribute Name="IPv6.1#AutoConfig">Enabled</Attribute>
+ <Attribute Name="IPv6.1#AddressGenerationMode">EUI64</Attribute>
+ <Attribute Name="IPMILan.1#Enable">Enabled</Attribute>
+ <Attribute Name="Users.2#UserName">rcp-cloud-admin</Attribute> 
+ <Attribute Name="Users.2#Password">6Cp@d^^iN</Attribute>
+ <Attribute Name="Users.2#Privilege">511</Attribute>
+ <Attribute Name="Users.2#IpmiLanPrivilege">Administrator</Attribute>
+ <Attribute Name="Users.2#IpmiSerialPrivilege">Administrator</Attribute>
+ <Attribute Name="Users.2#Enable">Enabled</Attribute>
+ <Attribute Name="VirtualConsole.1#PluginType">HTML5</Attribute>
+ <Attribute Name="USB.1#ConfigurationXML">Enabled while server has default credential settings only</Attribute>
+ <Attribute Name="USB.1#PortStatus">Enabled</Attribute>
+</Component>
+</SystemConfiguration>

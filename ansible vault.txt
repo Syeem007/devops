@@ -1,0 +1,18 @@
+ansible-vault encrypt_string --ask-vault-pass --name 'ansible_become_pass' 'password'
+
+ansible-playbook --ask-vault-pass vault_playbook.yaml
+
+
+ansible-vault rekey external_vault_vars.yaml
+
+
+
+ansible-playbook nginx_playbook.yaml --tags 'install-epel'
+
+
+ansible-playbook nginx_playbook.yaml --tags "webapp"
+
+
+for tag in include_tasks import_tasks import_playbook; do echo
+
+

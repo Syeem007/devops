@@ -1,0 +1,46 @@
+Database Administration:
+
+Create and delete User
+CREATE USER 'bhw'@'localhost' IDENTIFIED BY 'Ltest@12345'; [Addd New user]
+drop user 'das'@'localhost'; [Delete existing user]
+flush privileges; [Reload Privileges table]
+
+Create user and Assign Permission:
+
+>grant all privileges on bhw.* TO 'bhw'@'localhost' identified by 'Ltest@12345' with grant option;
+>grant all on xyz_cd.* to 'cdtest'@'localhost';
+>show grants for 'cdtest'@'localhost';
+Create and Delete Database
+mysql>create database debasish; [Create db]
+mysql>drop database debasish; [Delete DB]
+
+
+Check User Privilege
+SHOW GRANTS FOR dbadmin@localhost; [Check user permission]
+
+Set Privilege
+GRANT ALL ON *.* TO 'ajit'@'localhost' WITH GRANT OPTION; [All db and tables]
+grant all on debasish.* TO 'das'@'localhost' WITH GRANT OPTION;
+GRANT ALL ON nrbjobs_nrbjobs.* TO ajit@localhost;
+GRANT ALL ON nrbjobs_test.* TO ajit@localhost;
+
+Remove Privileges
+#REVOKE ALL PRIVILEGES, GRANT OPTION FROM ajit@localhost; [Not working]
+
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'glil'@'%';
+Change User Password**using update password method
+
+>UPDATE user SET authentication_string = PASSWORD('kHan#2020b') WHERE user = 'iqbal' AND host = 'localhost';
+
+Using Alter User Method
+>ALTER USER iqbal@localhost IDENTIFIED BY 'littlewhaas@3443lLLL';
+
+Backup Database
+mysqldump -u root -p nrbjobs > /tmp/nrbjobs.sql
+
+
+
+CREATE USER 'bhw'@'%' IDENTIFIED BY 'Ltest@12345';
+
+
+grant all privileges on bhw.* TO 'bhw'@'%' identified by 'Ltest@12345' with grant option;

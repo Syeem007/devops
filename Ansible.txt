@@ -1,0 +1,105 @@
+ssh-copy-id ansible@ubuntu1
+
+
+ssh ubuntu1
+
+
+sudo apt update
+
+sudo apt sshpass
+
+echo password > password.txt
+
+
+for user in ansible root
+do
+ for os in ubuntu centos
+	do
+		for instance in 1 2 3
+		do
+		sshpass -f password.txt ssh-copy-id -o StrictHostKeyChecking=no ${user}@${os}${instance}
+done
+done
+done
+
+
+ansible -i,ubuntu1,ubuntu2,ubuntu3,centos1,centos2,centos3 all -m ping
+
+
+
+diveintoansible-ansible architecture and design-Inventories/01
+ansible all -m ping
+
+ansible ~.*3 --list-hosts
+
+ansible all ping -o
+
+id
+
+ansible all -m command -a "id" -o
+ANSIBLE_HOST_KEY_CHECKING=False ansible -m ping
+
+
+ansible centos -m setup | more
+
+
+file create
+
+
+ansible all -m file -a "path=/tmp/test state=touch"
+ansible all -m file -a "path=/tmp/test state=touch mode=600"
+
+
+ssh centos2 ls -althr -tmp-test
+
+
+ansible all -m copy -a "src=/tmp/x dest=/tmp/x"
+
+
+ansible all -m copy -a "remote_src=yes src=/tmp/x dest=/tmp/y"
+
+ansible all -a "hostname" -o
+
+
+
+ansible all -a "touch -tmp-test_command_module creates=/tmp/test_command_module"
+
+
+ansible all -a "rm /tmp-test_command_module removes=/tmp/test_command_module"
+
+
+create
+ansible all -m file -a "path=/tmp/test_module.txt dest=touch mode=600" -o
+
+
+
+fetch
+
+
+ansible all -m fetch -a "src=/tmp/test_module.txt dest=/tmp/" -o
+
+ansible-doc file
+ansible-doc fetch
+
+
+yaml
+
+
+---
+Aston martin:
+	year_found:1913
+	website:astonmartin.com
+	founded_by:
+		-lionel Martin
+		-Robert Bamford
+	
+Fiat:
+	year_founded:1899
+Ford:
+
+...
+
+
+
+
+ls -altrh /tmp/test

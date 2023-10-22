@@ -1,0 +1,184 @@
+*Differences between cron and anacron:
+
+One of the main difference between cron and anacron jobs is that cron works on the system that are running continuously that means it is designed for the system that is running24*7. While anacron is used for the systems that are not running continuously.
+
+
+Other difference between the two is cron jobs can run every minute, but anacron jobs can be run only once a day.
+
+
+*issue behind getting an error “filesystem is full” 
+
+
+the substantial number of small files, and each of the files takes 128 bytes
+
+*Mention the steps to find out the memory usage by Linux.
+
+$ free –m // this is the simplest command where it will show the memory usage in MB.
+$ vmstat –s //this command gives a report on virtual memory statistics
+top // this command checks the usage of memory and cpu usage
+htop // similar like top command
+
+
+
+*ext3 file system
+
+
+unresolved shut down
+
+
+*What is the level of Security that Linux provides in comparison to other Operating Systems?
+
+
+You can find the configuration of PAM applications in the “/etc/pam.d” or “/etc/pam.conf” directory.
+
+
+*INODE in Linux.
+
+NODE is a structure which acts as an identity for all files and objects. Type a command in the shell “ls -i”. The numbers which are displayed at the adjacent of files and folders, these are INODE numbers which are assigned to each file that contains information about the file.
+
+*What is Puppet?
+
+ provides automation features in DevOps and Cloud environment.
+
+
+Nice(): This is used to bias the existing property of the process.
+
+
+
+*Explain the steps to increase the size of the LVM partition.
+
+lvextend -L +500M /dev/.
+
+
+*Which utility can be used to create the partition from a raw disk?
+
+
+Run this command: fdisk /dev/hd* (IDE) or /dev/sd* (SCSI).
+Type n to create a new partition.
+Once a partition is created then you can write the changes to this partition table. To write these changes type w.
+
+
+
+*Linux Standard Base
+
+standardize the software system structure, including the Filesystem Hierarchy Standard used in the Linux kernel.
+
+
+*cgroups-CPU, memory, disk I/O, network, etc.) of a collection of processes
+
+
+
+*How can you increase or decrease the priority of a process in Linux?
+
+nice -n 10 apt-get upgrade
+
+
+
+*run-levels in Linux
+
+0-6
+
+*swap
+swap file allows Linux to simulate the disk space as RAM. When your system starts running out of RAM, it uses the swap space to and swaps some content of the RAM on to the disk space.
+
+*If a volume group already exists and we need to extend the volume group to some extent
+
+
+vgextend VG1 /dev/sda1
+
+
+
+*finger service
+
+Finger Service acts as both the Web and FTP server. It is also known as Finger User Information Protocol which contains the information of the user that can be viewed by the clients.
+
+
+
+
+*Permissions are controlled at three levels:
+
+vgextend VG1 /dev/sda1
+
+
+Owner (called a user, or ‘u’)
+Group (‘g’)
+The rest users(called other, or ‘o’)
+
+
+Read – Filet can be viewed or copied.
+Write – File can be overwritten (e.g., using save as)
+Execute – File can be executed
+
+*explain Linux Boot Sequence.
+BIOS
+MBR:
+GRUB
+Kernel: 
+Init: 
+Runlevel programs:
+
+
+*What is page frame?
+A page frame is a block of RAM that is used for virtual memory
+********
+ifconfig(now is ip something)
+traceroute
+dig
+telnet
+nslookup
+netstat
+
+*****
+tar tvf archive_name.tar
+
+The command to extract an existing tar archive: $ tar xvf archive_name.tar
+
+The command for the creation of new tar archive: $ tar cvf archive_name.tar dirname/
+
+
+
+*****
+efidisk.img of=/dev/usb (name of the usb device)
+
+Now you have to disable ping to avoid network /ICMP flood
+Now set the following in/etc/sysctl.conf : net.ipv4.icmp_echo_ignore_all =1
+Then “sysctl -p”
+
+
+*****
+
+
+
+**Address Mapping records (A)
+
+Canonical Name records(CNAME) 
+Host Information records(HINFO)
+Integrated Services Digital Network records (ISDN)
+Mail exchanger record (MX)
+Name Server records (NS)
+Reverse-lookup Pointer records (PTR)
+Start of Authority records (SOA)
+Text records (TXT):
+
+
+**We can use utilities like "ftp," "scp" or "rsync" to copy a file from one machine to other. E.g., Using ftp:
+
+FTP hostname
+
+>put file1
+
+>bye
+
+
+*How will you connect to a database server from Linux?
+
+isql –S serverName –U username –P password
+
+
+***
+0 - Standard Input1 - Standard Output2 - Standard Error
+
+****
+command <file1 1>file2 2>file3
+
+

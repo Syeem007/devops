@@ -1,0 +1,13 @@
+ansible <hosts> -m <module_name> -a <"arguments" > -u <username> -k 
+
+
+
+command
+shell
+raw
+setup
+file
+copy
+apt
+user
+service

@@ -1,0 +1,71 @@
+ 1  ls
+    2  nmcli
+    3  ping 8.8.8.8
+    4  vi /etc/selinux/config
+    5  setenforce 0
+    6  set status
+    7  setstatus
+    8  sestatus
+    9  clear
+   10  yum install httpd
+   11  yum install https
+   12  nmcli
+   13  clear
+   14  yum install httpd
+   15  ping 8.8.8.8
+   16  ping google.com
+   17  ping facebook.com
+   18  nmtui
+   19  ping google.com
+   20  ip -a
+   21  nmcli
+   22  nmcli device show
+   23  nmcli connection show
+   24  vi /etc/
+   25  cd /etc
+   26  cd /systemcli
+   27  cd /sysconfig
+   28  ls
+   29  cd sysconfig
+   30  ls
+   31  cd network-scripts/
+   32  ls
+   33  nano ifcfg-cnp0s3
+   34  vi ifcfg-cnp0s3
+   35  ls
+   36  vi ifcfg-enp0s3
+   37  cd
+   38  cd /etc/
+   39  vi resolv.conf
+   40  ping 8.8.8.8
+   41  ping 8.8.8.8ping google.com
+   42  reboot
+   43  php -v
+   44  cd /
+   45  cd var/www/html/
+   46  ls
+   47  cd php-devops/
+   48  ls
+   49  ll
+   50  cd includes/
+   51  ll
+   52  vi config.php
+   53  cd
+   54  systemctl restart httpd
+   55  cd /
+   56  cd /var/www/html/
+   57  chown -r
+   58  chown -R apache:apache php-devops/
+   59  chmod -R 755  php-devops/
+   60  chmod -R 755 php-devops/
+   61  ll
+   62  history
+   63  history >> newtext.txt
+
+
+use bhw;
+
+for permit specific db
+
+grant all privileges on *.* TO 'bhw'@'%' identified by 'Time@12345
+' with grant option;

@@ -1,0 +1,6 @@
+/boot
+/swap
+/root
+
+
+vi /etc/sysconf ig/network-scripts/ifcfg-[network_device_name]

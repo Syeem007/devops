@@ -1,0 +1,66 @@
+KUBECTL DESCRIBE (NODENMAE)
+kubetl get deploy
+kubectl get ns
+kubectl get pod -o wide
+kubectl get node
+kubectl logs pods/etcd-master
+
+kubectl get pod -o wide -n kube-system
+kubectl get pods -n kube-system
+
+
+kubectl run nginx --image=nginx
+
+deployment
+kubectl delete 
+kubectl apply -f 
+
+kubectl create deployment mydeploy --image=nginx
+
+store yaml
+
+kubectl run nginx --image=nginx -o yaml --dry-run=client > nginx.yaml
+kubectl logs nginx
+
+kubectl edit pods (podname)
+kubectl delete pods (podname)
+
+For shutdown
+init 0
+
+4 things in any pods
+
+apiversion
+kind
+metadata
+	labels
+	name
+spec
+	containers:
+
+
+
+hostport
+tragetport 
+containerport
+
+
+type of kind 
+
+kubectl api-resourses
+
+
+
+kebectl describe nodes master | grep "Taints"
+
+
+
+topic
+
+
+Taint
+label schedular
+daemonset 
+stateful set
+replicaset
+resource limit

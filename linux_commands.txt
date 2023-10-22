@@ -1,0 +1,59 @@
+useful Commands
+---------------
+root / student , telekommunication
+
+sudo shutdown now
+
+apt-get install <>
+
+systemctl restart kamailio		#sudo reboot
+systemctl restart networking
+/etc/init.d/networking restart
+		
+
+tcpdump -i eth0 -w /tmp/eth0.pcap	#capture only on eth0 and save result to eth0.pcap
+tcpdump -i any -w /tmp/icmpnat.pcap	#capture on all interfaces
+
+kamctl add user1 user1
+kamctl db show subscriber
+
+IPv4 packet forwarding (nano /etc/sysctl.conf)
+net.ipv4.ip_forward = 1			# 0: disabled 1: enabled
+
+iptables --table nat --append POSTROUTING --out-interface eth0 -j MASQUERADE
+iptables --append FORWARD --in-interface eth1 -j ACCEPT
+
+========================
+nano /etc/network/interfaces	#where to configure network interfaces
+========================
+
+auto eth0
+iface eth0 inet static
+	address 192.172.0.110
+	netmask 255.255.255.0
+	gateway 192.172.0.1
+
+=======================
+interface is up or down
+=======================
+cat /sys/class/net/eth0/operstate
+
+configure quagga
+================
+nano /etc/quagga/daemons
+
+==============
+restart quagga
+==============
+/etc/init.d/quagga restart
+
+route -n
+vtysh -c “show ip ospf route”
+vtysh -c “show ip rip”
+
+
+ipv6
+====
+ping6 -c2 -I <interface> ff02::1
+ip -6 neigh
+/etc/init.d/radvd status

@@ -1,0 +1,19 @@
+Task1
+apt install kamailio kamailio-mysql-modules
+apt-get install mysql-server
+
+tcpdump -i any -w SIP.pcap (For all interfaces)
+tcpdump -i any -w RIP.pcap (For all interfaces)
+tcpdump -s 0 -i eth0 -w /tmp/SIPREGISTEReth1.pcap (Single interfaces)
+
+tcpdump -w - -p -n -s o udp > /tmp/capture-SIPREGISTER.pcap
+
+check users in database 
+
+kamctl db show subscriber
+
+sudo apt-get install -y linphone
+
+iptables --table nat --append POSTROUTING --out-interface eth0 -j MASQUERADE
+iptables --append FORWARD --in-interface eth1 -j ACCEPT
+iptables --append FORWARD --in-interface eth2 -j ACCEPT

@@ -1,0 +1,472 @@
+sudo su -
+    2  df -ht
+    3  sudo su -
+    4  ll
+    5  sudo su -
+    6  ll
+    7  sudo ./ready-cluster.sh
+    8  ll
+    9  init 0
+   10  sudo init 0
+   11  ll
+   12  ip r
+   13  sudo kubeadm init
+   14  sudo su -
+   15  sudo rm /etc/containerd/config.toml
+   16  systemctl restart containerd
+   17  sudo systemctl restart containerd
+   18  sudo kubeadm init
+   19  mkdir -p $HOME/.kube
+   20  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   21  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   22  kubectl get pods
+   23  kubectl get namespaces
+   24  kubectl get pods -n kube-system
+   25  kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+   26  kubectl get pods -n kube-system
+   27  watch kubectl get pods -n kube-system
+   28  kubectl get nodes
+   29  kubectl get nodes -o wide
+   30  kubectl get ns
+   31  kubectl get pods
+   32  kubectl get pods -all
+   33  kubectl get pods -A
+   34  kubectl get pods -A -o wide
+   35  kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1
+   36  kubectl get pods
+   37  kubectl describe pods kubernetes-bootcamp-855d5cc575-ks2z5
+   38  kubectl get pods
+   39  kubectl get deploy
+   40  kubectl describe deploy kubernetes-bootcamp
+   41  kubectl get pods -o wide
+   42  kubectl get pods
+   43  kubectl logs kubernetes-bootcamp-855d5cc575-ks2z5
+   44  source <(kubectl completion bash)
+   45  echo "source <(kubectl completion bash)" >> ~/.bashrc
+   46  alias k=kubectl
+   47  complete -o default -F __start_kubectl k
+   48  k get pods
+   49  kubectl describe pods kubernetes-bootcamp-855d5cc575-ks2z5
+   50  kubectl get pods
+   51  kubectl run nginx --image=nginx
+   52  kubectl get pods
+   53  kubectl describe pods
+   54  watch kubectl describe pods
+   55  kubectl get pdos
+   56  k get pods
+   57  kubectl describe nginx
+   58  kubectl describe pods nginx
+   59  kubectl get svc
+   60  ll
+   61  kubectl get pods
+   62  kubectl get pods -o wide
+   63  curl 10.36.0.1
+   64  curl 10.44.0.1
+   65  kubectl expose pod nginx --type=NodePort --target-port=80 port=80 -o yaml --dry-run=client > nginx.yaml
+   66  kubectl expose pod nginx --name=nginx --type=NodePort --target-port=80 --port=80 -o yaml --dry-run=client
+   67  kubectl expose pod nginx --name=nginx --type=NodePort --target-port=80 --port=80 -o yaml --dry-run=client >nginx_svc.yaml
+   68  ll
+   69  vim nginx_svc.yaml
+   70  kubectl apply -f nginx_svc.yaml
+   71  kubectl get svc,ep
+   72  cat nginx_svc.yaml
+   73  mkdir bhw
+   74  cd bhw/
+   75  ll
+   76  kubectl create deploy frontend --image=iqbalkhan319/bhwapp:1.1 --replicas=1 -o yaml --dry-run=client
+   77  kubectl create deploy frontend --image=iqbalkhan319/bhwapp:1.1 --replicas=1 -o yaml --dry-run=client > frontend.yaml
+   78  vim frontend.yaml
+   79  vim fronend_svc.yaml
+   80  vi backend.yaml
+   81  vim backend_svc.yaml
+   82  vim pv_pvc.yaml
+   83  vim secret.yaml
+   84  ll
+   85  kubectl apply -f *
+   86  kubectl apply -f
+   87  kubectl apply -f *.yaml
+   88  ll
+   89  mv fronend_svc.yaml frontend_svc.yaml
+   90  ll
+   91  kubectl apply -f secret.yaml
+   92  kubectl apply -f pv_pvc.yaml
+   93  kubectl get sc
+   94  kubectl get secret
+   95  k get pv
+   96  k get pvc
+   97  kubectl apply -f backend.yaml
+   98  kubectl apply -f backend_svc.yaml
+   99  vi frontend_svc.yaml
+  100  kubectl apply -f frontend.yaml
+  101  kubectl apply -f frontend_svc.yaml
+  102  kubectl get svc
+  103  kubectl get pods
+  104  kubectl describe pods backend-7bf7786884-4g7ww
+  105  kubectl describe pods frontend-7d55769bdd-gknjw
+  106  watch kubectl describe pods frontend-7d55769bdd-gknjw
+  107  cd
+  108  init 0
+  109  sudo init 0
+  110  kubectl get pods
+  111  kubectl get nodes
+  112  kubectl get nodes -o wide
+  113  kubectl get namespaces
+  114  kubectl get pods -n kube-system
+  115  kubectl get pods
+  116  kubectl get pods -n kube-system -o wide
+  117  kubectl get pods -o wide
+  118  kubectl get pods -o wide | grep "node1"
+  119  kubectl get pods -o wide | grep "node1" | wc -l
+  120  kubectl get pods -o wide | grep "node2" | wc -l
+  121  ll
+  122  cd .kube/
+  123  ll
+  124  vim config
+  125  cd
+  126  init 0
+  127  sudo init 0
+  128  kubectl api version
+  129  kubectl api-versions
+  130  kubectl api-resources
+  131  ll
+  132  cd bhw/
+  133  ll
+  134  cd ..
+  135  ll
+  136  history
+  137  history | grep "kubectl exec"
+  138  history
+  139  sudo su -
+  140  init 0
+  141  ll
+  142  kubectl get pods
+  143  ll
+  144  kubectl get pods
+  145  ll
+  146  kubectl get pods
+  147  kubectl describe pods nginx
+  148  kubectl edit pods nginx
+  149  ll
+  150  mkdir pods
+  151  cd pods
+  152  ll
+  153  vim nginx.yaml
+  154  kubectl delete pods nginx
+  155  kubectl get pods
+  156  kubectl apply -f nginx.yaml
+  157  vim nginx.yaml
+  158  kubectl apply -f nginx.yaml
+  159  kubectl get pods
+  160  kubectl describe pods nginx
+  161  kubectl get pods
+  162  kubectl api-versions
+  163  kubectl api-resources
+  164  kubectl api-versions
+  165  kubectl api-resources
+  166  kubectl api-resources | grep replicaset
+  167  kubectl api-resources | grep pod
+  168  kubectl get po
+  169  kubectl api-resources | grep pod
+  170  kubectl api-resources
+  171  ll
+  172  kubectl delete pods nginx
+  173  kubectl run nginx --image=nginx -o yaml --dry-run=client
+  174  kubectl run nginx --image=nginx -o yaml --dry-run=client > nginx.yaml
+  175  ll
+  176  vim nginx.yaml
+  177  k apply -f nginx.yaml
+  178  kubectl apply -f nginx.yaml
+  179  cd
+  180  kubectl create deployment mydeploy --image=nginx
+  181  kubectl get deploy
+  182  kubectl get pods
+  183  kubectl describe deployments.apps mydeploy
+  184  kubectl get deploy
+  185  kubectl get pods
+  186  kubectl describe pods mydeploy-5865fb49b4-jt5s2
+  187  kubectl edit deployments.apps mydeploy
+  188  kubectl get deployments.apps
+  189  kubectl get pods
+  190  watch kubectl get pods
+  191  kubectl describe deployments.apps mydeploy
+  192  kubectl describe pods mydeploy-5865fb49b4-jt5s2
+  193  kubectl describe pods mydeploy-8485b766c4-qt4nf
+  194  kubectl create deployment mydeploy --image=nginx -o yaml --dry-run=client
+  195  kubectl create deployment mydeploy --image=nginx -o yaml --dry-run=client > mydeploy.yaml
+  196  vim mydeploy.yaml
+  197  kubectl get deploy
+  198  kubectl get all
+  199  kubectl describe replicasets.apps mydeploy-8485b766c4
+  200  kubectl edit replicasets.apps mydeploy-8485b766c4
+  201  sudo init 0
+  202  kubectl get pods
+  203  kubectl expose --help
+  204  kubectl create service nodeport port=80 target-port=80 -o yamal --dry-run=client
+  205  kubectl create service mysvc  nodeport port=80 target-port=80 -o yamal --dry-run=client
+  206  kubectl create service mysvc  nodeport port=80 target-port=80 -o yaml --dry-run=client
+  207  kubectl create service mysvc  type=nodeport port=80 target-port=80 -o yaml --dry-run=client
+  208  kubectl create service --help
+  209  kubectl create service nodeport --help
+  210  kubectl create service nodeport mydeply --tcp=80:80 -o yaml --dry-run=client
+  211  kubectl create service nodeport mydeply --tcp=80:80 -o yaml --dry-run=client >nodeport.yaml
+  212  vim nodeport.yaml
+  213  ll
+  214  cd pods/
+  215  ll
+  216  cat nginx.yaml
+  217  cd ..
+  218  ll
+  219  cat nginx.yaml
+  220  cat mydeploy.yaml
+  221  vim nodeport.yaml
+  222  cat mydeploy.yaml
+  223  vim nodeport.yaml
+  224  kubectl apply -f nodeport.yaml
+  225  vim nodeport.yaml
+  226  kubectl apply -f nodeport.yaml
+  227  vim nodeport.yaml
+  228  kubectl apply -f nodeport.yaml
+  229  kubectl get svc
+  230  kubectl expose deployment --help
+  231  kubectl expose deployment nginx --port=80 --target-port=8000 -o yaml --dry-run=client
+  232  kubectl expose deployment mydeploy --port=80 --target-port=8000 -o yaml --dry-run=client
+  233  kubectl expose deployment mydeploy --port=80 --target-port=8000 -o yaml --dry-run=client > test-deply.yaml
+  234  vim test-deply.yaml
+  235  kubectl apply -f test-deply.yaml
+  236  kubectl get svc ep
+  237  kubectl get svc,ep
+  238  kubectl get pods
+  239  kubectl create service frontend clusterip --tcp=80:80 -o yaml --dry-run=client > clusterip.yaml
+  240  kubectl create service frontend clusterip -tcp=80:80 -o yaml --dry-run=client > clusterip.yaml
+  241  kubectl create service frontend clusterip - tcp=80:80 -o yaml --dry-run=client > clusterip.yaml
+  242  kubectl create service frontend clusterip -o yaml --dry-run=client > clusterip.yaml
+  243  kubectl create service frontend clusterip  --dry-run=client > clusterip.yaml
+  244  kubectl create service clusterip --help
+  245  kubectl create service clusterip frontend --tcp=80:80 -o yaml --dry-run=client > clusterip.yaml
+  246  vim clusterip.yaml
+  247  kubectl apply -f clusterip.yaml
+  248  kubectl get svc,ep
+  249  curl frontend
+  250  curl http://frontend
+  251  curl 10.111.13.38
+  252  kubectl get nodes
+  253  kubectl get nodes -o wide
+  254  sudo apt-get install net-tools
+  255  netstat -tulpn
+  256  ll
+  257  kubectl get deploy
+  258  kubectl get deploy -o wide
+  259  kubectl get pods
+  260  kubectl get pods -o wide
+  261  kubectl get rs
+  262  kubectl edit deployments.apps mydeploy
+  263  kubectl get deployments.apps mydeploy
+  264  kubectl get pods
+  265  watch kubectl get pods
+  266  kubectl get rs
+  267  watch kubectl get pods
+  268  kubectl get pods
+  269  kubectl get pods -o wide
+  270  kubectl edit deployments.apps mydeploy
+  271  kubectl get pods
+  272  watch kubectl get pods
+  273  kubectl edit deployments.apps mydeploy
+  274  ll
+  275  vim mydeploy.yaml
+  276  kubectl apply -f mydeploy.yaml
+  277  kubectl get deploy
+  278  ll
+  279  vim mydeploy.yaml
+  280  ll
+  281  kubectl get deploy
+  282  kubectl delete deployments.apps mydeploy
+  283  kubectl get deploy
+  284  kubectl get pods
+  285  kubectl edit deployments.apps nginxdeploy
+  286  kubectl get pods
+  287  kubectl get rs
+  288  history
+  289  kubectl get deploy
+  290  kubectl get pods
+  291  ll
+  292  mkdir deploy
+  293  mv mydeploy.yaml deploy/
+  294  ll
+  295  cd myd
+  296  cd deploy/
+  297  ll
+  298  vim mydeploy.yaml
+  299  cd
+  300  kubectl expose deployment --help
+  301  kubectl expose deployment nginxdeploy port=80 target-port=80 -type=nodeport -o yaml
+  302  kubectl expose deployment nginxdeploy port=80 target-port=80 - type=nodeport -o yaml
+  303  kubectl expose deployment nginxdeploy port=80 target-port=80 - type=NodePort -o yaml
+  304  kubectl expose deployment nginxdeploy --port=80 --target-port=80 - type=NodePort -o yaml
+  305  kubectl get svc
+  306  kubectl delete deployments.apps nginxdeploy
+  307  kubectl expose deployment nginxdeploy --port=80 --target-port=80 - type=NodePort -o yaml --dry-run=client > nginx_svc.yaml
+  308  kubectl expose deployment nginxdeploy --port=80 --target-port=80 -type=NodePort -o yaml --dry-run=client > nginx_svc.yaml
+  309  kubectl expose deployment nginxdeploy --port=80 --target-port=80 --type=NodePort -o yaml --dry-run=client > nginx_svc.yaml
+  310  kubectl expose deployment nginxdeploy --port=80 --target-port=80 -o yaml --dry-run=client > nginx_svc.yaml
+  311  kubectl get deploy
+  312  kubectl get svc
+  313  kubectl delete svc nginxdeploy
+  314  ll
+  315  cd deploy/
+  316  kubectl apply -f mydeploy.yaml
+  317  kubectl expose deployment nginxdeploy --port=80 --target-port=80 -type=NodePort -o yaml --dry-run=client > nginx_svc.yaml
+  318  kubectl expose deployment nginxdeploy --port=80 --target-port=80 --type=NodePort -o yaml --dry-run=client > nginx_svc.yaml
+  319  ll
+  320  vim nginx_svc.yaml
+  321  kubectl get deployments.apps nginxdeploy -o wide
+  322  ll
+  323  vim mydeploy.yaml
+  324  vi nginx_svc.yaml
+  325  vin nginx_svc.yaml
+  326  vim nginx_svc.yaml
+  327  kubectl apply -f nginx_svc.yaml
+  328  vim nginx_svc.yaml
+  329  kubectl apply -f nginx_svc.yaml
+  330  vim nginx_svc.yaml
+  331  kubectl apply -f nginx_svc.yaml
+  332  kubectl get svc
+  333  kubectl get svc nginx-svc
+  334  kubectl describe svc nginx-svc
+  335  kubectl get pods
+  336  kubectl get pods - o wide
+  337  kubectl get pods -o wide
+  338  kubectl describe svc nginx-svc
+  339  kubectl get svc,ep nginx-svc
+  340  cd
+  341  kubectl expose deployment nginxdeploy --port=80 --target-port=80 type=ClusterIP -o yaml --dry-run=client
+  342  kubectl expose deployment nginxdeploy --port=80 --target-port=80 type=ClusterIP --name=frontend -o yaml --dry-run=client
+  343  kubectl expose deployment nginxdeploy --port=80 --target-port=80 type=ClusterIP --name=frontend -o yaml --dry-run=client > clusterip_svc.yaml
+  344  kubectl expose deployment nginxdeploy --port=80 --target-port=80 type=ClusterIp --name=frontend -o yaml --dry-run=client
+  345  kubectl expose deployment nginxdeploy --port=80 --target-port=80 type=Clusterip --name=frontend -o yaml --dry-run=client
+  346  kubectl expose deployment nginxdeploy --port=80 --target-port=80 type=ClusterIP --name=frontend -o yaml --dry-run=client
+  347  kubectl expose deployment nginxdeploy --port=80 --target-port=80 --name=frontend -o yaml --dry-run=client > clustip_svc.yaml
+  348  ll
+  349  vim clustip_svc.yaml
+  350  kubectl get svc
+  351  kubectl delete svc frontend
+  352  kubectl apply -f clustip_svc.yaml
+  353  kubectl get svc frontend
+  354  kubectl describe svc frontend
+  355  history
+  356  kubectl expose pod nginx --help
+  357  kubectl expose pod nginx --port=80 --target-port=80 --type=NodePort >pod_svc.yaml
+  358  kubectl expose pod nginx --port=80 --target-port=80 --type=NodePort -o yaml --dry-run=client >pod_svc.yaml
+  359  vim pod_svc.yaml
+  360  kubectl describe pods nginx
+  361  vim pod_svc.yaml
+  362  kubectl apply -f pod_svc.yaml
+  363  kubectl get svc nginx
+  364  kubectl get svc,ep nginx
+  365  kubectl create ns --help
+  366  kubectl create ns dev -o yaml --dry-run=clinet
+  367  kubectl create ns dev -o yaml --dry-run=client
+  368  kubectl create ns dev -o yaml --dry-run=client >ns_dev.yaml
+  369  vim ns_dev.yaml
+  370  kubectl apply -f ns_dev.yaml
+  371  kubectl get ns
+  372  kubectl run nginx --image=nginx -n dev
+  373  kubectl get pod
+  374  kubectl delete pod nginx
+  375  kubectl get pod
+  376  kubectl get pod -n dev
+  377  cd
+  378  kubectl get ns
+  379  kubectl get pod
+  380  kubectl get pod -o wide
+  381  ll
+  382  kubectl get pod
+  383  kubectl describe deployments.apps nginxdeploy
+  384  kubectl describe pods nginx -n dev
+  385  vim ns_dev.yaml
+  386  init
+  387  init 0
+  388  ip r
+  389  init 0
+  390  ll
+  391  cd .kube/
+  392  ll
+  393  cat config
+  394  kubectl get nodes
+  395  cd
+  396  kubectl describe nodes master |grep "Taints"
+  397  kubectl describe nodes node1 |grep "Taints"
+  398  ll
+  399  cd pods/
+  400  ll
+  401  vim nginx.yaml
+  402  ll
+  403  cat node_selector.yaml
+  404  vim node_selector.yaml
+  405  kubectl describe nodes node1
+  406  kubectl describe nodes node2
+  407  cd
+  408  kubectl get pods
+  409  kubectl delete pods nginx
+  410  kubectl get deploy
+  411  kubectl delete deployments.apps nginxdeploy
+  412  kubectl get deploy -A
+  413  cd
+  414  kubectl create deployment nginx --image=nginx -o yaml --dry-run=client >nginx_deply.yaml
+  415  vim nginx_deply.yaml
+  416  kubectl apply -f nginx_deply.yaml
+  417  kubectl get deploy
+  418  kubectl get pods
+  419  kubectl describe pods nginx-77b4fdf86c-7s6gq
+  420  ll
+  421  vim nginx_deply.yaml
+  422  kubectl apply -f nginx_deply.yaml
+  423  kubectl get pods
+  424  kubectl get deploy
+  425  kubectl get replicaset
+  426  vim nginx_deply.yaml
+  427  kubectl describe nodes node1 |grep "Taints"
+  428  vim nginx_deply.yaml
+  429  kubectl apply -f nginx_deply.yaml
+  430* vim +35[A nginx_deply.yaml
+  431  kubectl apply -f nginx_deply.yaml
+  432  kubectl get deploy
+  433  kubectl get pods
+  434  kubectl describe pods nginx-669874648c-wnv49
+  435  kubectl get pods
+  436  kubectl get deploy
+  437  kubectl exec -it nginx-669874648c-wnv49 -- sh
+  438  ll
+  439  vim nginx_deply.yaml
+  440  kubectl apply -f nginx_deply.yaml
+  441  kubectl get pods
+  442  kubectl get pods -o wide
+  443  vim nginx_deply.yaml
+  444  cd /etc/kubernetes/manifests/
+  445  ll
+  446  vim etcd.yaml
+  447  sudo vim etcd.yaml
+  448  cd
+  449  kubectl get pods
+  450  kubectl get pods -n kube-system
+  451  ll
+  452  kubectl taint node node1 color:black:NoExecute
+  453  kubectl taint node node1 color:black:NoExecute -
+  454  kubectl taint node node1 color=black:NoExecute -
+  455  kubectl describe nodes node1 | grep "Tains"
+  456  kubectl describe nodes node1 | grep "Taitns"
+  457  kubectl describe nodes node1 | grep "Taints"
+  458  kubectl taint node node1 color=black:NoExecute-
+  459  kubectl describe nodes node1 | grep "Taints"
+  460  ll
+  461  cat nginx.yaml
+  462  kubectl run nginx --imgae=nginx -o yaml --dry-run=client>nginx_static.yaml
+  463  kubectl run nginx --image=nginx -o yaml --dry-run=client>nginx_static.yaml
+  464  ll
+  465  sudo cp nginx_static.yaml /etc/kubernetes/manifests/
+  466  kubectl get pods
+  467  sudo cp nginx_static.yaml /etc/kubernetes/manifests/
+  468  scp nginx_static.yaml iqbal@node1:/home/iqbal/
+  469  ssh iqbal@node1
+  470  kubectl get pods
+  471  history
+  472  history >history.txt

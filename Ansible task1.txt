@@ -1,0 +1,134 @@
+hosts:linux
+
+
+vars:
+
+
+tasks:
+   -name:Install EPEL
+    yum:
+	name: epel-release
+	update_cache: yes
+	state: latest
+     when: ansible_distribution == "Centos"
+
+   -name: Install Ngnix Centos
+    yum:
+	name: nginx
+	update_cache: yes
+	state: latest
+     when: ansible_distribution == "Centos"
+
+   -name: Install Ngnix Ubuntu
+    apt:
+	name: nginx
+	update_cache: yes
+	state: latest
+     when: ansible_distribution == "Ubuntu"
+
+
+new-------------
+
+
+
+hosts:linux
+
+
+vars:
+
+
+tasks:
+   -name:Install EPEL
+    yum:
+	name: epel-release
+	update_cache: yes
+	state: latest
+     when: ansible_distribution == "Centos"
+
+   -name: Install Ngnix 
+    package:
+	name: nginx
+	state: latest
+    
+   -name: Restart Ngnix
+    service:
+	name: nginx
+	state: restarted
+
+
+Chechhttp----
+
+
+
+
+hosts:linux
+
+
+vars:
+
+
+tasks:
+   -name:Install EPEL
+    yum:
+	name: epel-release
+	update_cache: yes
+	state: latest
+     when: ansible_distribution == "Centos"
+
+   -name: Install Ngnix 
+    package:
+	name: nginx
+	state: latest
+    
+   -name: Restart Ngnix
+    service:
+	name: nginx
+	state: restarted
+
+
+ handlers:
+	-name: Check HTTP Service
+	 uri:
+	 url:http:// {ansible_default_ipv4.address}}
+	 status_code:200
+    
+
+for run code: ansible-playbook nginx_playbook.yaml
+
+-name: Template index.html-base.j2 to index.html on target
+ template:
+	src:index.html-base.j2
+	dest:"{{nginx_root_location}}/index.html"
+      mode:0644
+
+-name:Install unzip
+ package:
+      name:unzip
+	satate:latest
+ -name:Unarchive playbook stacker game
+      unarchive:
+		src:playbook_stacker.zip
+		dest:"{{ nginx_root_location }}"
+		mode:0755
+
+
+----------------
+
+ansible centos3 -m service -a "name=nginx state=started"
+
+
+ssh -F sshd_config centos1
+
+
+----
+ansible all -i inventory.py --list-hosts
+
+
+ansible all -a "hostname -s" -o
+
+
+ansible ubuntu1 -m setup -a filter="ansible_distribution*"
+
+
+
+ssh centos -l root -altr /home/user

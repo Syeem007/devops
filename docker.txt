@@ -1,0 +1,39 @@
+docker network create --driver bridge --subnet 172.18.0.0/24 --gateway 172.18.0.1 docker-network
+
+
+
+docker network connect --ip 172.18.0.2 docker-network name
+
+docker pull ubuntu
+
+docker tag jboss/wildfly myimage:v1
+
+docker start name
+
+docker inspect name
+
+
+
+docker run --name pc1 --it ubuntu (base)
+
+
+docker attach pc1
+
+docker inspect pc1
+
+docker network create -d "nat" --subnet "10.244.0.0/24" my_nat
+
+
+docker network create--subnet=192.168.1.0/24--ip-range=192.168.1.0/24--gateway=192.168.1.1--attachable\-o"com.docker.network.bridge.name"="br0"\
+-o"com.docker.network.bridge.default_bridge"="true"\
+-o"com.docker.network.bridge.enable_icc"="true"\
+-o"com.docker.network.bridge.enable_ip_masquerade"="false"\
+-o"com.docker.network.bridge.host_binding_ipv4"="0.0.0.0"\
+-o"com.docker.network.driver.mtu"="1500"\
+mynet192
+
+
+docker run --name test2 --network=docker-network -d nginx
+
+
+stress --cpu 1 --timeout 1000

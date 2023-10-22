@@ -1,0 +1,36 @@
+ansible_galaxy init nginx
+
+vim nginx_playbook.yml nginx/handlers/main.yaml
+
+
+mv templates/* nginx/templates
+
+
+export EC2_INI_PATH=inventory/ec2.ini
+
+
+inventory/ec2.py --list | more
+
+cat group_vars/tag_Name_Ansible
+
+
+cpoy ssh key
+
+vi paste
+
+bash -x install_docker.sh
+
+cat envdocker
+
+
+
+source envdocker
+
+docker ps -a
+
+
+docker images
+
+
+
+

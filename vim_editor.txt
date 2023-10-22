@@ -1,0 +1,36 @@
+vim Editor:
+':set nu' : To add line numbers.
+0 : Goto beginning of the line.
+$ : Goto end of the line.
+I : Goto beginning of the line and insert mode.
+A : Goto end of line and insert mode.
+G : Goto beginning of last line.
+gg : Goto beginning of the first line.
+w : Jump forward to next word. [2w : to jump 2 words]
+    e : Jump forward to next word using the last letter.
+b : Jump back to previous word. [3b : to jump 3 words]
+
+
+[line_number]gg : Goto beginning of specific line. {ex: 10gg : for 10th line}
+o : Add extraline after a line and insert mode.
+O : Add extraline before a line and insert mode.
+/[word] : search [word]
+    n : next matching word
+    N : previous matching word.
+yy : copy full line
+    p : paste the copied line.
+    [number]yy : copy numbers of line. {ex: 5yy : To copy next 5 lines.}
+    yw : copy word.
+dw : delete word
+dd : delete full line.
+dG : delete next all lines.
+
+u : undo changes.
+Ctrl + r : redo changes.
+
+:s/[word]/[replace-word]/g : Repace a single matched word. [g --> gc to get N/Y alert]
+:%s/[word]/[replace-word]/g : Repace a all matched words.  [g --> gc to get N/Y alert]
+
+:w[Editor] : save file.
+:wq[Enter] : save file and exit.
+:q![Enter] : without save file and exit.

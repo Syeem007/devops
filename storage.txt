@@ -1,0 +1,127 @@
+#See partition
+-> lsblk
+#see partion /mount point/ total used
+-> df -hT
+
+#Go in side a disk
+->fdisk [disk_path]
+->fdisk /dev/sdb
+
+#press 'm' for help.
+
+#Create new partition:
+ -> press 'n'
+    # partition type
+    -> p / e (parimary/Stander)
+    #partition nummber
+    -> 1..4 
+    #First Sector
+    -> press Enter (Normally default)
+    #Last Sector (Define the size)
+    -> +1G (for 1 GB)
+    #Save
+    -> w
+# List for partition
+ -> All partition list with type. 
+ -> The number before the type use to change partion type.
+ 
+#Update partition table
+ -> partprobe /dev/sdb1
+
+#add file system wizh new partition
+-> mkfs.[file_system_type] [partition] (ext4 tpye extend or reduce kora jay. xfs sudhu extend kore jay)
+-> mkfs.ext4 /dev/sdb1 
+# See all inforfation about partitopn (size/name/UUID...etc)
+-> blkid
+
+#mount directory with pratition (temporary mount. will remove after reboot the system)
+-> mount [partition] [directory]
+-> mount /dev/sdb1 /mnt
+#unmount
+-> umount /mnt
+
+#Permanent mount (Best practice use uuid not with partion name)
+#check the UUID
+#edit /etc/fstab
+-> vi /etc/fstab
+    #add in the file
+    -> [UUID]    [mount_path]    [file_system]   [defaults]  [00] (use tab instend of space)
+    -> UUID=3desxxxxxxx /mnt    ext4    defaults    0 0
+    #can't see mount poit yet.
+    -> mount -a (if there is no error partition will mount with the path permanently)
+
+#change parttion type like From 'Linux' to 'Linux LVM'
+    #'l' to se list and the id of partion type.
+    -> p (see all partition in the disk)
+    -> t (to change partition type)
+    ->[partition_number]
+    -> 2  (for 2nd partition)
+    -> 8e (hexa code of partition type. For Linux LVM partitiontype is: 8e)
+    #Save
+    -> w
+
+    #PV(physical volume) -> vg (volume group) -> lv (Logical volume) 
+    # need Linux LVM type this. 
+    # Create PV(physical volume)
+    -> pvcreate [partition]
+    -> pvcreate /dev/sdb2 
+    #See details about PV
+    ->pvs/pvdisplay (pvs for shor and pvdisplay in details)
+    #Create vg(volume group)
+    -> vgcreate [name_of_vg] [pv(physical volume)]
+    -> vgcreate myvg /dev/sdb2
+    #See details about vg
+    -> vgs/vgdisplay
+    #cleate lv(Logical volume)
+    -> lvcreate -L [size] -n [name] [vg_group_name]
+    -> lvcreate -L 1G -n mylv myvg 
+    #See details about lv
+    -> lvs
+    #add file_system to lv
+    -> mkfs.ext4 /dev/mapper/myvg-mylv
+    #see details fo the file_system
+    -> blkid
+    #mount directory with lv
+    -> mount [lv_details] [directory]
+    -> mount /dev/mapper/myvg-mylv /data/
+    ##extend lv storage.
+    -> lvextend -L [new_extended_size] [targeted_lv]
+    -> lvextend -L 2G /dev/myvg/mylv
+    #need to resize the lv to use extended memory.
+    #Need to umount the directory before resize
+    -> unmount [directory]
+    -> resize2fs /dev/myvg/mylv
+    -> resize2fs /dev/mapper/myvg-mylv 
+    (need check do we nneed to run both command to use the storage and also use extended storage in file system)
+    ##reduce lv storage. need to follow steps
+    #unmount first.
+    #need to check file system: blkid.
+    #Check file_system first.
+    -> e2fsck -f [lv_details]
+    -> e2fsck -f /dev/mapper/myvg-mylv
+    #resize file_system.
+    -> resize2fs [lv_details] [new_size]
+    -> resize2fs /dev/mapper/myvg-mylv 1G
+    #reduce lv
+    -> lvreduce -L [new_size] [lv_details]
+    -> lvreduce -L /dev/mapper/myvg-mylv 1G
+
+
+
+
+
+    ##man pvcreate/vgcreate/lvcreate to get help. Check Example part to see command to execute.
+
+##Scenarion: Have 1 disk make partition create pv then vg then 2 lv1 and lv2. give filesystem/mount with both lv.
+##increase and reduce lv memory size.
+1. create partition: fdisk
+2. change partion type: Linux --> Linux LVM
+3. update partition table: partprobe /dev/sdb2
+3. create PV : pvcreate
+4. create VG: vgcreate
+5. create 2 LV(mylv1, mylv2): lvcreate
+6. give file_system_type to lv: mkfs.ext4 [lv]
+7. mount lv: mount [lv] [directory]
+8. Permanent mount: vi /etc/fstab [add lv UUID mount point]
+
+

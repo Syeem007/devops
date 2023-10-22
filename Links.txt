@@ -1,0 +1,15 @@
+https://www.jenkins.io/doc/book/installing/linux/#red-hat-centos
+
+
+
+https://docs.docker.com/engine/install/centos/
+
+
+[17:49, 12.3.2023] iqbal khan: docker volume create mysql-volume
+docker volume ls
+docker run --name=backend -p 3306:3306 -v mysql-volume:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Time@12345 -d mysql/mysql-server:8.0.20
+[17:50, 12.3.2023] iqbal khan: docker-compose down
+docker-compose up -d --build
+docker-compose ps
+docker-compose down
+docker-compose up -d

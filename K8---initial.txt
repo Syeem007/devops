@@ -1,0 +1,129 @@
+###Configure Kubernetes On Premise Cluster:
+-------------------------------------------
+===============================================================================================
+Step1: Install at least two virtual machnine (Ubunutu 20.0 LTS)
+
+Step2: Configure network
+
+vi /etc/netplan/00-installer-config.yaml
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    ens33:
+      dhcp4: false
+      addresses: [192.168.44.139/24]
+      gateway4: 192.168.44.2
+      nameservers:
+        addresses: [8.8.8.8]
+  version: 2
+
+===================================================================================================
+#netplan apply
+
+Add host record:
+
+vi /etc/hosts
+192.168.44.139  master
+192.168.44.140  node1
+==================================================================================================================
+Step 3: Disable swap
+
+vi /etec/fstab
+
+#/swap.img      none    swap    sw      0       0		# Add # before /swap.img
+
+mount -a
+=======================================================================================================================
+Step4:
+
+cat ready_cluster.sh
+#Disable Swap Space
+sudo swapoff –a
+===========================================================================================================================
+#Add these IP tables Rule:
+
+cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+br_netfilter
+EOF
+
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sudo sysctl --system
+======================================================================================================
+#Installing docker:
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo apt update
+sudo apt install docker-ce -y
+systemctl start docker
+systemctl enable docker
+systemctl daemon-reload
+
+
+=============================================================================================================
+
+we can only do that
+=========================================================================================================
+#Installing Kubernetes
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl
+sudo mkdir -p /etc/apt/keyrings/
+curl -fsSL https://dl.k8s.io/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg
+
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl -y
+kubeadm version
+===============================================================================================================
+=============================================================================================================
+#chmod +x ready_cluster.sh
+#./ready_cluster.sh
+==================================================================================================
+Troubleshoot: If occured any errror during join cluster run below command to the respective nodes: 
+
+rm /etc/containerd/config.toml
+systemctl restart containerd
+
+#./ready_cluster.sh
+======================================================================================================================
+Prepare Master:
+--------------
+
+kubeadm init
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+kubectl get pods -n kube-system
+#Configure weavenet CNI plugin:
+
+
+dns---
+===========================================================================================================
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+kubectl get pods -n kube-system
+=============================================================================================================
+
+Join Node1:
+------------
+
+kubeadm join 192.168.44.139:6443 --token e2p2qo.3ilnrs2zbk38ip1u --discovery-token-ca-cert-hash sha256:b1dc0231d9ff3343fa6eccb280b7bf66e159af1327521dbcdf9458ec092b6474
+
+
+[Note: Run this command only for reset cluster
+kubeadm reset
+]
+
+
+
+
+
+
+
+
